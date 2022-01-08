@@ -10,7 +10,6 @@
 
     $row = mysqli_fetch_assoc($result);
 
-
 if ($_POST){
 
     $name = $_POST['name'];
@@ -38,8 +37,8 @@ if ($_POST){
 
     $pd = $_POST['pd'];
 
-    mysqli_query("UPDATE client SET fname=" . $name . "lname=" . $surname . "dob=" . $date . "phone=" . $phone . "WHERE cid=" . $id);
-    // mysqli_query($conn, "INSERT INTO diopter(leftSph, rightSph, leftCyl, rightCyl, rightAxis, pd, leftAxis, Client) VALUES ('{$lsphere}', '{$rsphere}', '{$lcylinder}', '{$rcylinder}', '{$raxis}', '{$pd}', '{$laxis}', '{$clientid}')");
+    mysqli_query($conn, "UPDATE client SET fname='$name', lname='$surname', dob='$date', phone='$phone' WHERE cid=$id");
+    mysqli_query($conn, "UPDATE diopter SET leftSph='$lsphere', rightSph='$rsphere', leftCyl='$lcylinder', rightCyl='$rcylinder', rightAxis='$raxis', leftAxis='$laxis', pd='$pd' WHERE client=$id");
 
     header("Location: index.php");
     exit();
@@ -69,41 +68,41 @@ if ($_POST){
 
             <div class="form-group col-md-6">
                 <label for="name">Name</label>
-                <input name="name" type="text" class="form-control" id="name" placeholder="Name" value=" <?= $row['fname']?>" required>
+                <input name="name" type="text" class="form-control" id="name" placeholder="Name" value="<?=$row['fname']?>" required>
             </div>
 
             <div class="form-group col-md-6">
                 <label for="surname">Surname</label>
-                <input name="surname" type="text" class="form-control" id="surname" placeholder="Surname" value=" <?= $row['lname']?>" required>
+                <input name="surname" type="text" class="form-control" id="surname" placeholder="Surname" value="<?=$row['lname']?>" required>
             </div>
 
         </div>
 
         <div class="form-group">
             <label for="date">Date</label>
-            <input name="date" type="date" class="form-control" id="date" placeholder="Date" value=" <?= $row['dob']?>" required>
+            <input name="date" type="date" class="form-control" id="date" value=<?=strftime('%Y-%m-%d', strtotime($row['dob']))?> required>
         </div>
 
         <div class="form-group">
             <label for="text">Phone</label>
-            <input name="phone" type="text" class="form-control" id="text" placeholder="Phone" value=" <?= $row['phone']?>" required>
+            <input name="phone" type="text" class="form-control" id="text" placeholder="Phone" value="<?=$row['phone']?>" required>
         </div>
 
         <div class="form-row flex">
 
             <div class="form-group col-md-4">
                 <label for="lsphere">Left Sphere</label>
-                <input name="lsphere" type="number" step="0.25" class="form-control" id="lsphere" placeholder="Left Sphere" value=" <?= $row['leftSph']?>">
+                <input name="lsphere" type="number" step="0.25" class="form-control" id="lsphere" placeholder="Left Sphere" value=<?=(float)['leftSph']?>>
             </div>
 
             <div class="form-group col-md-4">
                 <label for="lcylinder">Left Cylinder</label>
-                <input name="lcylinder" type="number" step="0.25" class="form-control" id="lcylinder" placeholder="Left Cylinder" value=" <?=  $row['leftCyl']?>">
+                <input name="lcylinder" type="number" step="0.25" class="form-control" id="lcylinder" placeholder="Left Cylinder" value=<?= (float)$row['leftCyl']?>>
             </div>
 
             <div class="form-group col-md-4">
                 <label for="laxis">Left Axis</label>
-                <input name="laxis" type="number" min="0" class="form-control" id="laxis" placeholder="Left Axis" value=" <?= $row['leftAxis']?>">
+                <input name="laxis" type="number" min="0" class="form-control" id="laxis" placeholder="Left Axis" value=<?=(float)$row['leftAxis']?>>
             </div>
 
         </div>
@@ -112,25 +111,25 @@ if ($_POST){
 
             <div class="form-group col-md-4">
                 <label for="rsphere">Right Sphere</label>
-                <input name="rsphere" type="number" step="0.25" class="form-control" id="rsphere" placeholder="Right Sphere" value=" <?= $row['rightSph']?>">
+                <input name="rsphere" type="number" step="0.25" class="form-control" id="rsphere" placeholder="Right Sphere" value=<?=(float)$row['rightSph']?>>
             </div>
 
             <div class="form-group col-md-4">
                 <label for="rcylinder">Right Cylinder</label>
-                <input name="rcylinder" type="number" step="0.25" class="form-control" id="rcylinder" placeholder="Right Cylinder" value=" <?= $row['rightCyl']?>">
+                <input name="rcylinder" type="number" step="0.25" class="form-control" id="rcylinder" placeholder="Right Cylinder" value=<?= (float)$row['rightCyl']?>>
             </div>
 
             <div class="form-group col-md-4">
                 <label for="raxis">Right Axis</label>
-                <input name="raxis" type="number" min="0" class="form-control" id="raxis" placeholder="Right Axis" value=" <?= $row['rightAxis']?>">
+                <input name="raxis" type="number" min="0" class="form-control" id="raxis" placeholder="Right Axis" value=<?=(float)$row['rightAxis']?>>
             </div>
         </div>
 
         <div class="form-group col-md-12">
             <label for="pd">PD</label>
-            <input name="pd" type="number" min="0" class="form-control" id="pd" placeholder="PD" value=" <?= $row['PD']?>">
+            <input name="pd" type="number" min="0" class="form-control" id="pd" placeholder="PD" value=<?=(float)$row['PD']?>>
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </main>
 </body>

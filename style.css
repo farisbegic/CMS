@@ -1,0 +1,29 @@
+/* Global */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.flex{
+    display: flex;
+}
+
+/* Logo */
+
+.logo{
+    display: block;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+/* Table */
+
+main{
+    margin: 1% 2%;
+}
+
+button{
+    margin: 10px 0;
+}

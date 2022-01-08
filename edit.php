@@ -1,6 +1,6 @@
 <?php
 
-    $conn = mysqli_connect('localhost', 'root', '', 'clients');
+    require("dbase.php");
 
     $id = $_GET['id'];
 

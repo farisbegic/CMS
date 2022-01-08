@@ -12,7 +12,7 @@
             echo 'Form is invalid';
         }
 
-        $conn = mysqli_connect('localhost', 'root', '', 'clients');
+        require("dbase.php");
 
         // Left eye
 

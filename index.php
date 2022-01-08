@@ -1,6 +1,6 @@
 <?php
 
-    $conn = mysqli_connect('localhost', 'root', '', 'clients');
+    require("dbase.php");
 
     $query = mysqli_query($conn, "SELECT c.cid,c.fname, c.lname, c.dob, c.phone, d.leftSph, d.leftCyl, d.leftAxis, d.rightSph, d.rightCyl, d.rightAxis, d.pd FROM client c, diopter d WHERE c.cid = d.Client");
 
